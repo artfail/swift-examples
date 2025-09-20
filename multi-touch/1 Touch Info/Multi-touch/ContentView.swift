@@ -33,7 +33,11 @@ struct Sandbox: View {
             SpatialEventGesture()
                 .onChanged { events in
                     for event in events {
+                        if event.phase == .active {
                         spatialEvents["\(event.id)"] = event.location
+                        } else {
+                            spatialEvents["\(event.id)"] = nil
+                        }
                     }
                 }
                 .onEnded(){ events in
